@@ -7,14 +7,15 @@ from lewis.utils.replies import conditional_reply
 @has_log
 class Measm905StreamInterface(StreamInterface):
     
-    in_terminator = "\r\n"
-    out_terminator = "\r\n"
+    in_terminator = "\r"
+    out_terminator = "\r"
 
     def __init__(self):
         super(Measm905StreamInterface, self).__init__()
         # Commands that we expect via serial during normal operation
         self.commands = {
-            CmdBuilder(self.catch_all).arg("^#9.*$").build()  # Catch-all command for debugging
+            #CmdBuilder(self.catch_all).arg("^#9.*$").build(),  # Catch-all command for debugging
+            CmdBuilder("get_pressure").escape("*01D").eos().build() #
         }
 
     def handle_error(self, request, error):
@@ -28,5 +29,6 @@ class Measm905StreamInterface(StreamInterface):
         """
         self.log.error("An error occurred at request " + repr(request) + ": " + repr(error))
 
-    def catch_all(self, command):
-        pass
+    def get_pressure(self):
+        return (f"{self.device.pressure:+06d}")
+

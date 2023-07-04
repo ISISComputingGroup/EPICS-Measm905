@@ -17,3 +17,13 @@ record(bo, "$(P)DISABLE")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
 }
+
+record(ai, "$(P)PRESSURE") 
+{
+    field(DESC, "The pressure reading from the MEASM905")
+    field(SCAN, ".5 second")
+    field(DTYP, "stream") #According to wiki page "Creating an ISIS Stream Device IOC"
+    field(INP, "@measm905.proto getCurrPressure $(PORT)")
+    field(EGU, "bar") #Set from device
+    field(PREC, 5)
+}

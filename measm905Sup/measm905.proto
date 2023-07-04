@@ -1,18 +1,7 @@
-getIDN {
-    out "*IDN?";
-    in "%\$1[^\r\n]";
-    ExtraInput = Ignore;
-}
+Terminator = CR;
+ReplyTimeout = 2000;
 
-cmd {
-    out "\$1";
-}
-
-setD {
-    out "\$1 %d";
-}
-getD {
-    out "\$1?";
-    in "%d";
-    ExtraInput = Ignore;
+getCurrPressure {
+    out "*01D"; #Over ASCII Protocol, request reading
+    in "%d"; #The Pressure reading 
 }
