@@ -4,6 +4,7 @@ from lewis.devices import StateMachineDevice
 
 
 class SimulatedMeasm905(StateMachineDevice):
+    pressure = 9
 
     def _initialize_data(self):
         """
