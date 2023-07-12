@@ -12,7 +12,6 @@ class SimulatedMeasm905(StateMachineDevice):
         Initialize all of the device's attributes.
         """
         self.pressure = 1
-        self.test_thing = 47
 
     def _get_state_handlers(self):
         return {

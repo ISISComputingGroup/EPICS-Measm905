@@ -33,6 +33,4 @@ class Measm905Tests(unittest.TestCase):
     @skip_if_recsim("In rec sim this test fails")
     def test_WHEN_pressure_changes_THEN_pv_also_changes(self):
         self._lewis.backdoor_set_on_device("pressure", 42)
-        #self._lewis.backdoor_run_function_on_device("get_pressure")
-
         self.ca.assert_that_pv_is("PRESSURE", 42)
