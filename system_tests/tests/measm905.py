@@ -34,3 +34,4 @@ class Measm905Tests(unittest.TestCase):
     def test_WHEN_pressure_changes_THEN_pv_also_changes(self):
         self._lewis.backdoor_set_on_device("pressure", 42)
         self.ca.assert_that_pv_is("PRESSURE", 42)
+        
