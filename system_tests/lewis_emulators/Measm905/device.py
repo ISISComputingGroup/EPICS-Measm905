@@ -1,7 +1,6 @@
 from collections import OrderedDict
 from .states import DefaultState
 from lewis.devices import StateMachineDevice
-import random
 
 
 
@@ -12,7 +11,7 @@ class SimulatedMeasm905(StateMachineDevice):
         """
         Initialize all of the device's attributes.
         """
-        self._pressure = 1
+        self.pressure = 1
 
     def _get_state_handlers(self):
         return {
@@ -25,8 +24,4 @@ class SimulatedMeasm905(StateMachineDevice):
     def _get_transition_handlers(self):
         return OrderedDict([
         ])
-    
-    @property
-    def pressure(self):
-        return self._pressure
-    
+  

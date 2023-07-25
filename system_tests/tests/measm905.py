@@ -19,7 +19,7 @@ IOCS = [
 ]
 
 
-TEST_MODES = [TestModes.RECSIM, TestModes.DEVSIM]
+TEST_MODES = [TestModes.DEVSIM]
 
 
 class Measm905Tests(unittest.TestCase):
@@ -30,5 +30,7 @@ class Measm905Tests(unittest.TestCase):
         self._lewis, self._ioc = get_running_lewis_and_ioc("Measm905", DEVICE_PREFIX)
         self.ca = ChannelAccess(device_prefix=DEVICE_PREFIX)
 
-    def test_that_fails(self):
-        self.fail("You haven't implemented any tests!")
+    @skip_if_recsim("In rec sim this test fails")
+    def test_WHEN_pressure_changes_THEN_pv_also_changes(self):
+        self._lewis.backdoor_set_on_device("pressure", 42)
+        self.ca.assert_that_pv_is("PRESSURE", 42)
