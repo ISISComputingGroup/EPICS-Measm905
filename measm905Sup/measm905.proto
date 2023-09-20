@@ -3,5 +3,5 @@ ReplyTimeout = 2000;
 
 getCurrPressure {
     out "*01D"; #Over ASCII Protocol, request reading
-    in "%d"; #The Pressure reading 
+    in "%f"; #The Pressure reading 
 }
