@@ -1,12 +1,10 @@
-from lewis.adapters.stream import StreamInterface, Cmd
-from lewis.utils.command_builder import CmdBuilder
+from lewis.adapters.stream import StreamInterface
 from lewis.core.logging import has_log
-from lewis.utils.replies import conditional_reply
+from lewis.utils.command_builder import CmdBuilder
 
 
 @has_log
 class Measm905StreamInterface(StreamInterface):
-    
     in_terminator = "\r"
     out_terminator = "\r"
 
@@ -14,8 +12,8 @@ class Measm905StreamInterface(StreamInterface):
         super(Measm905StreamInterface, self).__init__()
         # Commands that we expect via serial during normal operation
         self.commands = {
-            #CmdBuilder(self.catch_all).arg("^#9.*$").build(),  # Catch-all command for debugging
-            CmdBuilder("get_pressure").escape("*01D").eos().build() #
+            # CmdBuilder(self.catch_all).arg("^#9.*$").build(),  # Catch-all command for debugging
+            CmdBuilder("get_pressure").escape("*01D").eos().build()  #
         }
 
     def handle_error(self, request, error):
@@ -30,5 +28,4 @@ class Measm905StreamInterface(StreamInterface):
         self.log.error("An error occurred at request " + repr(request) + ": " + repr(error))
 
     def get_pressure(self):
-        return (f"{self.device.pressure:+06d}")
-
+        return f"{self.device.pressure:+06d}"
