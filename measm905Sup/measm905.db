@@ -25,5 +25,6 @@ record(ai, "$(P)PRESSURE")
     field(DTYP, "stream") #According to wiki page "Creating an ISIS Stream Device IOC"
     field(INP, "@measm905.proto getCurrPressure $(PORT)")
     field(EGU, "bar") #Set from device
+    info(INTEREST, "HIGH")
     field(PREC, 5)
 }
